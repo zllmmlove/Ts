@@ -1,6 +1,20 @@
 import React from "react";
-export const SearchPanel = (props) => {
-  const { param, setParam, users } = props;
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  title: string;
+  organization: string;
+}
+interface SearchPanelProps {
+  users: User[];
+  param: {
+    name: string;
+    personId: string;
+  };
+  setParam: (param: SearchPanelProps["param"]) => void;
+}
+export const SearchPanel = ({ param, setParam, users }: SearchPanelProps) => {
   return (
     <form>
       <input
@@ -11,7 +25,7 @@ export const SearchPanel = (props) => {
         }}
       />
       <select
-        value={param.parsonId}
+        value={param.personId}
         onChange={(e) => setParam({ ...param, personId: e.target.value })}
       >
         <option value="">负责人</option>
